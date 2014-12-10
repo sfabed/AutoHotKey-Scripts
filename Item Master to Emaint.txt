@@ -1,0 +1,64 @@
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+SetKeyDelay, 10
+#p::Pause
+ESC::ExitApp
+ralt::pause
+#r::reload
+
+;Computer1(75, 28, "0x68A4FC")
+;Computer2(30, 32, "0x4992F9")
+
+SetVar()
+{
+global
+;spreadsheet = "Microsoft Excel - Item Master"
+spreadsheet = "Microsoft Excel - ScrapSheet"
+;spreadsheet = "Microsoft Excel - ???"
+;xp = ?
+;yp = ?
+;color = ?
+}
+CpyCell(x,y)
+{
+clipboard =  
+winActivate, %spreadsheet%
+	click %x%,%y% 
+	send ^c
+ClipWait
+StringTrimRight clipboard, clipboard, 2
+}
+
+PsteCellinVis:
+winActivate, newbox
+click 700,200
+sendRaw %clipboard%
+send {enter}
+return
+
+waitForPageLoad()
+{
+loop
+	{
+	Loaded =
+	PixelGetColor, Loaded, %xp%, %yp%
+	if Loaded = %color%
+	break
+	}
+loop
+	{
+	Loaded =
+	PixelGetColor, Loaded, %x%, %y%
+	if Loaded = %color%
+	break
+	}
+}
+
+Insert::
+loop,
+{
+SetVar()
+msgbox, %spreadsheet%
+winActivate, %spreadsheet%
