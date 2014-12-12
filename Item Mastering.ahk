@@ -113,7 +113,7 @@ send {enter 3}%prod%{enter}%comm%
 send {enter 7}92{enter}1{enter}UA{enter}2{enter}Z{enter}Y{enter}9{enter}N{enter}7{enter}Y{enter}{f4}US{enter}
 sleep 500
 winActivate, newbox
-winActivate, Microsoft Excel - Item Master Log
+;winActivate, Microsoft Excel - Item Master Log
 ;send {down}
 return
 
